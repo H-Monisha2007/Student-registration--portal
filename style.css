@@ -1,0 +1,192 @@
+/* =========================================================
+   STUDENT REGISTRATION & RESULT PORTAL - CUSTOM STYLES
+   (Bootstrap 5 handles layout/components; this file adds
+   the purple theme, section switching, alerts position
+   and print styles.)
+   ========================================================= */
+
+/* ---- Theme: override Bootstrap primary with the indigo/purple accent ---- */
+:root {
+  --bs-primary: #4a3ff0;
+  --bs-primary-rgb: 74, 63, 240;
+  --bs-link-color: #4a3ff0;
+  --bs-primary-bg-subtle: #e6e4fd;
+  --bs-primary-text-emphasis: #2a2394;
+  --bs-body-bg: #f3f4fb;
+}
+
+.btn-primary {
+  --bs-btn-bg: #4a3ff0;
+  --bs-btn-border-color: #4a3ff0;
+  --bs-btn-hover-bg: #382dcf;
+  --bs-btn-hover-border-color: #382dcf;
+  --bs-btn-active-bg: #2f26b0;
+  --bs-btn-active-border-color: #2f26b0;
+  --bs-btn-disabled-bg: #4a3ff0;
+  --bs-btn-disabled-border-color: #4a3ff0;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #4a3ff0;
+  --bs-btn-border-color: #4a3ff0;
+  --bs-btn-hover-bg: #4a3ff0;
+  --bs-btn-hover-border-color: #4a3ff0;
+  --bs-btn-active-bg: #382dcf;
+  --bs-btn-active-border-color: #382dcf;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: #4a3ff0;
+  box-shadow: 0 0 0 0.25rem rgba(74, 63, 240, 0.2);
+}
+
+.form-check-input:checked {
+  background-color: #4a3ff0;
+  border-color: #4a3ff0;
+}
+
+/* ---- Page layout: sticky footer (flex column, no position: fixed) ---- */
+body {
+  min-height: 100vh;
+  min-height: 100dvh; /* mobile browsers: ignore the collapsing address bar */
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1;
+  margin-bottom: 2rem; /* keeps the original gap above the footer */
+}
+
+/* ---- Header ---- */
+.site-header {
+  background: linear-gradient(135deg, #4a3ff0, #7b5cff);
+}
+
+.site-header .subtitle {
+  opacity: 0.9;
+  font-size: 0.8rem;
+}
+
+.site-header .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.site-header .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---- Section switching (JS toggles .active-section) ---- */
+.app-section {
+  display: none;
+}
+
+.app-section.active-section {
+  display: block;
+}
+
+/* ---- Cards ---- */
+.card {
+  border-radius: 10px;
+  border-color: #e0e0ee;
+}
+
+.card-header {
+  background-color: #fff;
+  color: #2a2394;
+  font-size: 1.05rem;
+}
+
+.stat-card .stat-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #382dcf;
+}
+
+.stat-card .stat-value.text-success { color: var(--bs-success) !important; }
+.stat-card .stat-value.text-danger  { color: var(--bs-danger) !important; }
+
+.live-preview {
+  background-color: #f7f7fd;
+  border-style: dashed !important;
+}
+
+.info-item {
+  background-color: #f7f7fd;
+}
+
+/* ---- Alerts container (fixed top-right, Bootstrap alerts inside) ---- */
+.notification-area {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  left: 1rem;
+  z-index: 2000;
+  max-width: 380px;
+  margin-left: auto;
+  pointer-events: none;
+}
+
+.notification-area .alert {
+  pointer-events: auto;
+  margin-bottom: 0.5rem;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  background-color: #21213a;
+  color: #e5e5f0;
+  margin-top: auto; /* pushes the footer to the bottom when content is short */
+  flex-shrink: 0;
+}
+
+/* ---- Small screens ---- */
+@media (max-width: 575.98px) {
+  .table {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---- Print: only the result sheet ---- */
+@media print {
+  .no-print,
+  .notification-area {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    display: block;
+    min-height: 0;
+  }
+
+  #home, #registration, #students {
+    display: none !important;
+  }
+
+  #results {
+    display: block !important;
+  }
+
+  .result-card {
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+}
